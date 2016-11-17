@@ -1,0 +1,48 @@
+<! DOCTYPE html>
+
+<html>
+    <head>
+        <title>Homework 2</title>
+    </head>
+    <style>
+        .red{
+            color:red;
+            font-weight:bold;
+        }
+    </style>
+    <body style="margin: 0">
+        <h1>
+            Signup
+        </h1>
+        <form method="POST">
+            Username <input type="text" name="username" required value="{{username}}">
+            {% if not validUsername %}
+            <span class = "red">That Username is Invalid!</span>
+            {% endif %}
+            <br>
+            Password <input type="password" name="password" required>
+            {% if not validPassword %}
+            <span class = "red">That Password is Invalid!</span>
+            {% endif %}
+            <br>
+            Confirm Password <input type="password" name="verify" required>
+            {% if not passwordsMatch %}
+            <span class = "red">Your Passwords Don't Match!</span>
+            {% endif %}
+            <br>
+            Email (Optional) <input type="text" name="email" value="{{email}}">
+            {% if not validEmail %}
+            <span class = "red">That Email is Invalid!</span>
+            {% endif %}
+            <br>
+            <input type="submit">
+        </form>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
+
+
+
+
