@@ -62,12 +62,17 @@ class MainHandler(Handler):
         validEmail = valid_email(email)
         # If no error pops, render welcome.html, otherwise render base and send error variables to it
         if (passwordsMatch and validUsername and validPassword and validEmail): 
-            self.render("welcome.html", username = username)
+            #self.render("welcome.html", username = username)
+            self.redirect('/welcome?username='+username)
         else:
             self.render("base.html", passwordsMatch = passwordsMatch, validUsername = validUsername, 
                         validPassword = validPassword, validEmail = validEmail, username = username, email = email)
-
+class Welcome(Handler):
+    def get(self):
+        username = self.request.get("username")
+        self.render("welcome.html", username = username)
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler) 
+    ('/', MainHandler),
+    ('/welcome', Welcome) 
 ], debug=True)
