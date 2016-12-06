@@ -7,6 +7,8 @@ handlers:
   script: main.app
 
 libraries:
+- name: webapp2
+  version: "2.5.2"
 - name: jinja2
   version: latest
 - name: markupsafe
